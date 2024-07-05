@@ -20,11 +20,11 @@ int ldr_dl = 4;
 void setup() {
   horizontal.attach(9); // servo horizontal pin digital 9
   vertical.attach(3); // servo vertical pin digital 3
-  horizontal.write(servohLimitLow);
-  vertical.write(servovLimitLow);
+  horizontal.write(servohLimitLow);// establecer posicion inicial para servo horizontal
+  vertical.write(servovLimitLow); // establecer posicion inicial para servo vertical
   delay(3000);
 }
-
+//funcion para mover servos
 void smoothMove(Servo &servo, int &currentPos, int targetPos, int delayTime) {
   if (currentPos < targetPos) {
     for (int pos = currentPos; pos <= targetPos; pos++) {
@@ -46,8 +46,8 @@ void loop() {
   int dl = analogRead(ldr_dl); // down left (inferior izquierdo)
   int dr = analogRead(ldr_dr); // down right (inferior derecho)
   
-  int dtime = 10;
-  int tol = 50;
+  int dtime = 10;// tiempo de espera entre cada lectura
+  int tol = 50; // tolerancia 
   
   int vmt = (tl + tr) / 2; // valor arriba maximo
   int vmd= (dl + dr) / 2; // valor abajo maximo
